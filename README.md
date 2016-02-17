@@ -6,6 +6,21 @@ elementary file system checks using df utility report
 
 * df utility should be installed
 
+# Install
+
+    sparrow index update
+    sparrow plg install df-check
+    sparrow project create system
+    sparrow check add system disk
+    sparrow check set system disk df-check
+    sparrow check ini # skip this step if you want default settings 
+        
+
+    # and finally run:
+
+    sparrow check run system disk
+
+
 # Configuration
 
 suite.ini : 
