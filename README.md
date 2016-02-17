@@ -13,7 +13,7 @@ elementary file system checks using df utility report
     sparrow project create system
     sparrow check add system disk
     sparrow check set system disk df-check
-    sparrow check ini # skip this step if you want default settings 
+    sparrow check ini system disk # skip this step if you want default settings 
         
 
     # and finally run:
