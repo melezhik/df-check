@@ -1,5 +1,5 @@
 {
-    "version": "0.0.5",
+    "version": "0.0.6",
     "name": "df-check",
     "engine": "generic", 
     "description" : "elementary file system checks using df utility report",

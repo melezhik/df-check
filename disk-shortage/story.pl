@@ -1,2 +1,2 @@
-exec 'df -h; echo OK'
+exec 'df -h -P; echo OK'
 
