@@ -6,70 +6,51 @@ elementary file system checks using df utility report
 
 * df utility should be installed
 
-# Install
+# INSTALL
 
-    sparrow index update
     sparrow plg install df-check
+
+# CONFIGURE
+
     sparrow project create system
     sparrow check add system disk
     sparrow check set system disk df-check
     sparrow check ini system disk # skip this step if you want default settings 
-        
 
-    # and finally run:
+# RUN        
 
-    sparrow check run system disk
+    $ sparrow check run system disk
 
-
-# Configuration
-
-suite.ini : 
+    vagrant@Debian-jessie-amd64-netboot:~/my/df-check$ strun --param threshold=93 --verbose
+    /tmp/.outthentic/31966/home/vagrant/my/df-check/disk-shortage/story.t ..
+    # Filesystem      Size  Used Avail Use% Mounted on
+    # /dev/sda1       9.2G  7.4G  1.4G  85% /
+    # udev             10M     0   10M   0% /dev
+    # tmpfs           971M  8.4M  963M   1% /run
+    # tmpfs           2.4G  4.0K  2.4G   1% /dev/shm
+    # tmpfs           5.0M     0  5.0M   0% /run/lock
+    # tmpfs           2.4G     0  2.4G   0% /sys/fs/cgroup
+    # none            119G  110G  9.7G  92% /vagrant
+    # OK
+    # threshhold: 93
+    ok 1 - output match /(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)/
+    ok 2 - enough disk space (85%) on /dev/sda1
+    ok 3 - enough disk space (0%) on udev
+    ok 4 - enough disk space (1%) on tmpfs
+    ok 5 - enough disk space (1%) on tmpfs
+    ok 6 - enough disk space (0%) on tmpfs
+    ok 7 - enough disk space (0%) on tmpfs
+    ok 8 - enough disk space (92%) on none
+    1..8
+    ok
+    All tests successful.
+    Files=1, Tests=8,  0 wallclock secs ( 0.01 usr  0.01 sys +  0.08 cusr  0.00 csys =  0.10 CPU)
+    Result: PASS
+    
+# Suite.ini
 
     # disk used threshold in %
     threshold = 80
-    
-# Output
-
-    vagrant@Debian-jessie-amd64-netboot:~/my/df-check$ strun
-    /tmp/.outthentic/6832/home/vagrant/my/df-check/disk-shortage/story.t ..
-    ok 1 - perl /home/vagrant/my/df-check/disk-shortage/story.pl succeeded
-    ok 2 - stdout saved to /tmp/.outthentic/6832/UJtafDBH5d
-    # threshhold: 80
-    # verify ... /dev/sda1
-    # verify ... udev
-    # verify ... tmpfs
-    # verify ... tmpfs
-    # verify ... tmpfs
-    # verify ... tmpfs
-    # verify ... none
-    # verify ... none
-    ok 3 - output match /(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)/
-    ok 4 - enough disk space (76%) on /dev/sda1
-    ok 5 - enough disk space (0%) on udev
-    ok 6 - enough disk space (1%) on tmpfs
-    ok 7 - enough disk space (1%) on tmpfs
-    ok 8 - enough disk space (0%) on tmpfs
-    ok 9 - enough disk space (0%) on tmpfs
-    not ok 10 - enough disk space (90%) on none
-    not ok 11 - enough disk space (90%) on none
-    
-    #   Failed test 'enough disk space (90%) on none'
-    #   at /usr/local/share/perl/5.20.2/Outthentic.pm line 123.
-    
-    #   Failed test 'enough disk space (90%) on none'
-    #   at /usr/local/share/perl/5.20.2/Outthentic.pm line 123.
-    1..11
-    # Looks like you failed 2 tests of 11.
-    Dubious, test returned 2 (wstat 512, 0x200)
-    Failed 2/11 subtests
-    
-    Test Summary Report
-    -------------------
-    /tmp/.outthentic/6832/home/vagrant/my/df-check/disk-shortage/story.t (Wstat: 512 Tests: 11 Failed: 2)
-      Failed tests:  10-11
-      Non-zero exit status: 2
-    Files=1, Tests=11,  0 wallclock secs ( 0.02 usr  0.01 sys +  0.05 cusr  0.00 csys =  0.08 CPU)
-    Result: FAIL
     
 # Author
 
