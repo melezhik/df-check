@@ -25,10 +25,8 @@ elementary file system checks using df utility report
 
 suite.ini : 
 
-    [disk]
     # disk used threshold in %
     threshold = 80
-    
     
 # Output
 
