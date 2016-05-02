@@ -21,7 +21,6 @@ elementary file system checks using df utility report
 
     $ sparrow check run system disk
 
-    vagrant@Debian-jessie-amd64-netboot:~/my/df-check$ strun --param threshold=93 --verbose
     /tmp/.outthentic/31966/home/vagrant/my/df-check/disk-shortage/story.t ..
     # Filesystem      Size  Used Avail Use% Mounted on
     # /dev/sda1       9.2G  7.4G  1.4G  85% /
