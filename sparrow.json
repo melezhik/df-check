@@ -1,7 +1,6 @@
 {
-    "version": "0.1.1",
+    "version": "0.2.0",
     "name": "df-check",
-    "engine": "generic", 
     "description" : "elementary file system checks using df utility report",
     "url" : "https://github.com/melezhik/df-check.git"
 }
