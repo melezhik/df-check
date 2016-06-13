@@ -10,16 +10,9 @@ elementary file system checks using df utility report
 
     sparrow plg install df-check
 
-# CONFIGURE
+# RUN
 
-    sparrow project create system
-    sparrow check add system disk
-    sparrow check set system disk df-check
-    sparrow check ini system disk # skip this step if you want default settings 
-
-# RUN        
-
-    $ sparrow check run system disk
+    $ sparrow plg run df-check
 
     /tmp/.outthentic/31966/home/vagrant/my/df-check/disk-shortage/story.t ..
     # Filesystem      Size  Used Avail Use% Mounted on
@@ -31,7 +24,7 @@ elementary file system checks using df utility report
     # tmpfs           2.4G     0  2.4G   0% /sys/fs/cgroup
     # none            119G  110G  9.7G  92% /vagrant
     # OK
-    # threshhold: 93
+    # threshold: 93
     ok 1 - output match /(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)/
     ok 2 - enough disk space (85%) on /dev/sda1
     ok 3 - enough disk space (0%) on udev
@@ -46,10 +39,14 @@ elementary file system checks using df utility report
     Files=1, Tests=8,  0 wallclock secs ( 0.01 usr  0.01 sys +  0.08 cusr  0.00 csys =  0.10 CPU)
     Result: PASS
     
-# Suite.ini
+# Plugin parameters
 
-    # disk used threshold in %
-    threshold = 80
+## threshold
+
+Disk allowable used threshold as percentage ratio
+
+    $ sparrow plg run df-check --param threshold=70
+
     
 # Author
 
