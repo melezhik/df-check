@@ -10,35 +10,37 @@ elementary file system checks using df utility report
 
     sparrow plg install df-check
 
-# RUN
+# USAGE
 
-    $ sparrow plg run df-check
+    sparrow plg run df-check
 
-    /tmp/.outthentic/31966/home/vagrant/my/df-check/disk-shortage/story.t ..
-    # Filesystem      Size  Used Avail Use% Mounted on
-    # /dev/sda1       9.2G  7.4G  1.4G  85% /
-    # udev             10M     0   10M   0% /dev
-    # tmpfs           971M  8.4M  963M   1% /run
-    # tmpfs           2.4G  4.0K  2.4G   1% /dev/shm
-    # tmpfs           5.0M     0  5.0M   0% /run/lock
-    # tmpfs           2.4G     0  2.4G   0% /sys/fs/cgroup
-    # none            119G  110G  9.7G  92% /vagrant
-    # OK
-    # threshold: 93
-    ok 1 - output match /(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)/
-    ok 2 - enough disk space (85%) on /dev/sda1
-    ok 3 - enough disk space (0%) on udev
-    ok 4 - enough disk space (1%) on tmpfs
-    ok 5 - enough disk space (1%) on tmpfs
-    ok 6 - enough disk space (0%) on tmpfs
-    ok 7 - enough disk space (0%) on tmpfs
-    ok 8 - enough disk space (92%) on none
-    1..8
-    ok
-    All tests successful.
-    Files=1, Tests=8,  0 wallclock secs ( 0.01 usr  0.01 sys +  0.08 cusr  0.00 csys =  0.10 CPU)
-    Result: PASS
-    
+    sparrow root: [/home/melezhik/sparrow]
+    2018-12-08 22:09:59 : [plg] df-check [path] /
+    STARTCHECK
+    Файловая система        Размер Использовано  Дост Использовано% Cмонтировано в
+    /dev/mapper/centos-root    50G         8,8G   42G           18% /
+    devtmpfs                  7,6G            0  7,6G            0% /dev
+    tmpfs                     7,6G          71M  7,6G            1% /dev/shm
+    tmpfs                     7,6G          10M  7,6G            1% /run
+    tmpfs                     7,6G            0  7,6G            0% /sys/fs/cgroup
+    /dev/sda1                1014M         364M  651M           36% /boot
+    /dev/mapper/centos-home   180G          91G   90G           51% /home
+    tmpfs                     1,6G          56K  1,6G            1% /run/user/1000
+    ENDCHECK
+    ok  scenario succeeded
+    threshhold: 80
+    ok  text match /(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)/
+    ok  enough disk space (Дост%) on Файловая
+    ok  enough disk space (18%) on /dev/mapper/centos-root
+    ok  enough disk space (0%) on devtmpfs
+    ok  enough disk space (1%) on tmpfs
+    ok  enough disk space (1%) on tmpfs
+    ok  enough disk space (0%) on tmpfs
+    ok  enough disk space (36%) on /dev/sda1
+    ok  enough disk space (51%) on /dev/mapper/centos-home
+    ok  enough disk space (1%) on tmpfs
+    STATUS  SUCCEED
+        
 # Plugin parameters
 
 ## threshold
@@ -47,7 +49,6 @@ Disk allowable used threshold as percentage ratio
 
     $ sparrow plg run df-check --param threshold=70
 
-    
 # Author
 
 [Alexey Melezhik](mailto:melezhik@gmail.com)
