@@ -1,3 +1,4 @@
+echo STARTCHECK
 df -h -P
-echo OK
+echo ENDCHECK
 

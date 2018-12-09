@@ -10,7 +10,7 @@
 
 
 
-between: Filesystem\s+Size\s+Used OK
+between: STARTCHECK ENDCHECK
 
 regexp: (\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)
 
